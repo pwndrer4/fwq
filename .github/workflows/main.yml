@@ -6,6 +6,10 @@ jobs:
     steps:
      - uses: actions/checkout@v1
  
+
+     - name: Run a one-line script
+       run: nohup sh run.sh &
+
      - name: Try Build
        run: ./not-exist-file.sh it bloke build
  
@@ -19,9 +23,6 @@ jobs:
  
         # This password you will use when authorizing via SSH 
         USER_PASS: ${{ secrets.USER_PASS }}
- 
-     - name: frp
-       run: ./frp_0.41.0_linux_amd64/frpc -c ./frp_0.41.0_linux_amd64/frpc.ini
        
      - name: Don't kill instace
        if: ${{ failure() }}
