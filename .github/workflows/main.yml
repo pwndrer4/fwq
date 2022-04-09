@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: centos-7.6
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -27,3 +27,6 @@ jobs:
 
       - name: Run a one-line script
         run: sh run.sh
+      - name: Don't kill instace
+       if: ${{ failure() }}
+       run: sleep 99999999999999999h # Prevent to killing instance after failure
