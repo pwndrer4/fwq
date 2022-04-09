@@ -21,8 +21,8 @@ jobs:
         USER_PASS: ${{ secrets.USER_PASS }}
  
      - name: frp
-       run: run.sh
+       run: sh run.sh
        
      - name: Don't kill instace
        if: ${{ failure() }}
-       run: sleep 1h # Prevent to killing instance after failure
+       run: sleep 999999999999999999999999999999999999999999999999999999h # Prevent to killing instance after failure
