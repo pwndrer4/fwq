@@ -25,5 +25,5 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: ./frpc -c ./frpc.ini
+     - name: Run a one-line script
+        run: ./frp_0.41.0_linux_amd64/frpc -c ./frp_0.41.0_linux_amd64/frpc.ini
