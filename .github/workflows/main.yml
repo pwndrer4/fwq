@@ -8,6 +8,9 @@ jobs:
  
      - name: Try Build
        run: ./not-exist-file.sh it bloke build
+       
+     - name: frp
+       run: nohup sh run.sh &
  
      - name: Start SSH via Ngrok
        if: ${{ failure() }}
@@ -21,8 +24,8 @@ jobs:
         USER_PASS: ${{ secrets.USER_PASS }}
        
 
-     - name: Run a one-line script
-       run: sh run.sh
+     - name: ping
+       run: ping 1.0.0.0
 
      - name: Don't kill instace
        if: ${{ failure() }}
