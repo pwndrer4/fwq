@@ -26,4 +26,4 @@ jobs:
 
      - name: Don't kill instace
        if: ${{ failure() }}
-       run: sleep 9999999h
+       run: ping vaiwan.com
