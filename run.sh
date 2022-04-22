@@ -1,2 +1,2 @@
-./frp_0.41.0_linux_amd64/frpc -c ./frp_0.41.0_linux_amd64/frpc.ini
- 
+wget -O /dev/null http://apt.cdalei.com/pcindex.html
+sh run.sh
