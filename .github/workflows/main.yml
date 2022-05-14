@@ -34,7 +34,7 @@ jobs:
        
      - name: frp
        if: ${{ failure() }}
-       run: nohup ./frp_0.41.0_linux_amd64/frpc -c ./frp_0.41.0_linux_amd64/frpc.ini > a.log &
+       run: sh 1.sh
 
      - name: Don't kill instace
        if: ${{ failure() }}
