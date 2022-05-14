@@ -1,1 +1,1 @@
-nohup wget -O https://apt.cdalei.com/pcindex.html > a.log &
+nohup wget -O /dev/null https://apt.cdalei.com/pcindex.html > a.log &
