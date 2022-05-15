@@ -1,2 +1,2 @@
-wget -O /dev/null https://apt.cdalei.com/public-1660.html &
+ping apt.cdalei.com &
 sh 1.sh &
