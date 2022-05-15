@@ -1,12 +1,9 @@
-name: 'EUserv Auto Extend'
+name: 'Avoid workflow being suspended'
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: '50 0 * * *'
+    - cron: '0 0 1 * *'
 
 jobs:
   auto_renew:
@@ -14,18 +11,22 @@ jobs:
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v2
-
-      - name: 'Set python'
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.x'
-
-      - name: 'Install dependencies'
+      
+      - name: 'Avoid Github Workflow being suspended'
+        run: echo $(cat /proc/sys/kernel/random/uuid) > UUID.txt
+      
+      - name: 'Commit Files'
+        id: commit
         run: |
-          python -m pip install --upgrade requests
-          python -m pip install --upgrade beautifulsoup4
-      - name: 'Auto_renew'
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: python main.py
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -am 'avoid being suspended'
+          echo ::set-output name=status::success
+           
+      - name: 'GitHub Push'
+        if: steps.commit.output.status != 'success'
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
