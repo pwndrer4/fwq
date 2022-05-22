@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 import random
 import os
-browser=webdriver.PhantomJS(executable_path="./phantomjs/bin/phantomjs")
+browser=webdriver.PhantomJS(executable_path="./phantomjs-2.1.1-linux-x86_64/bin/phantomjs")
 browser.implicitly_wait(30)
 browser.get("https://accounts.goorm.io/login?return_url=aHR0cHM6Ly9pZGUuZ29vcm0uaW8vbXkvZGFzaGJvYXJkP3JlZGlyZWN0PTE=") 
 browser.set_window_size(1920,1080)                                        
