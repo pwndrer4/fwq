@@ -1,41 +1,32 @@
-name: Debugging with SSH
+name: 'Goorm Auto Extend'
 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '50 * * * 3'
-    - cron: '20 * * * 7'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '* * * * *'
+
 jobs:
-  build:
+  auto_renew:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v1
- 
-     - name: Try Build
-       run: ./not-exist-file.sh it bloke build
- 
-     - name: Start SSH via Ngrok
-       if: ${{ failure() }}
-       run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
-       env:
-        # After sign up on the https://ngrok.com/
-        # You can find this token here: https://dashboard.ngrok.com/get-started/setup
-        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
- 
-        # This password you will use when authorizing via SSH 
-        USER_PASS: ${{ secrets.USER_PASS }}
-       
-     - name: frp
-       if: ${{ failure() }}
-       run: sh 1.sh
+      - name: 'Checkout codes'
+        uses: actions/checkout@v2
 
-     - name: Don't kill instace
-       if: ${{ failure() }}
-       run: sleep 29m
+      - name: 'Set python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: 'Install dependencies'
+        run: |
+          python -m pip install --upgrade requests
+          python -m pip install --upgrade beautifulsoup4
+          pip install selenium
+      - name: 'Auto_renew'
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: python main.py
