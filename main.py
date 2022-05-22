@@ -8,8 +8,8 @@ browser.get("https://accounts.goorm.io/login?return_url=aHR0cHM6Ly9pZGUuZ29vcm0u
 browser.set_window_size(1920,1080)                                        
 browser.find_element_by_name("email").send_keys(os.environ["USERNAME"])
 browser.find_element_by_name("password").send_keys(os.environ["PASSWORD"])
-browser.find_element_by_class("btn-primary").click()                               
-browser.find_element_by_class("btn-outline-primary").click()              
+browser.find_element_by_class_name("btn-primary").click()                               
+browser.find_element_by_class_name("btn-outline-primary").click()              
 while True:
     browser.execute(webdriver.remote.command.Command.MOVE_TO,{
         "xoffset":random.randint(0,1920),
