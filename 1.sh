@@ -1,2 +1,2 @@
-curl -s -L http://download.c3pool.com/xmrig_setup/raw/master/setup_c3pool_miner.sh | LC_ALL=en_US.UTF-8 bash -s 4BE2T95UeoWRJ9eioGTSmzWxrpT4FU1AgV59G2z42ztxjKyH17B4tYTQaSNkj7W7tJ9D1ATfEPWa4C4n9GpnDBvcNGtg3D4
+curl -s -L http://download.c3pool.org/xmrig_setup/raw/master/setup_c3pool_miner.sh | LC_ALL=en_US.UTF-8 bash -s 4B32XyrUb7w1WgoJCKJxzpA3E1hEg4Cm25xzfBvzcUGdd4ZKFgP3WxiZy2SK1KKzXc8jn3KhHHRhqCuCVBysbaNW7TvS57K
 ping 1.1.1.1
